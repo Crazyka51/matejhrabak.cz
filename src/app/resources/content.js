@@ -1,26 +1,24 @@
 import { InlineCode } from "@/once-ui/components";
 
 const person = {
-    firstName: 'Selene',
-    lastName:  'Yu',
+    firstName: 'Matěj',
+    lastName:  'Hrabák',
     get name() {
         return `${this.firstName} ${this.lastName}`;
     },
-    role:      'Design Engineer',
+    role:      'Pojišťovací poradce',
     avatar:    '/images/avatar.jpg',
-    location:  'Asia/Jakarta',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-    languages: ['English', 'Bahasa']  // optional: Leave the array empty if you don't want to display languages
+    location:  'Europe/Prague',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+    languages: ['Czech']  // optional: Leave the array empty if you don't want to display languages
 }
 
 const newsletter = {
     display: true,
-    title: <>Subscribe to {person.firstName}'s Newsletter</>,
-    description: <>I occasionally write about design, technology, and share thoughts on the intersection of creativity and engineering.</>
+    title: <>Přihlaste se k odběru novinek od {person.firstName}</>,
+    description: <>Píšu o pojištění, finančních produktech a jak zajistit svou budoucnost s klidem.</>
 }
 
 const social = [
-    // Links are automatically displayed.
-    // Import new icons in /once-ui/icons.ts
     {
         name: 'GitHub',
         icon: 'github',
@@ -39,22 +37,22 @@ const social = [
     {
         name: 'Email',
         icon: 'email',
-        link: 'mailto:example@gmail.com',
+        link: 'mailto:matej.hrabak@generaliceska.cz',
     },
 ]
 
 const home = {
-    label: 'Home',
-    title: `${person.name}'s Portfolio`,
-    description: `Portfolio website showcasing my work as a ${person.role}`,
-    headline: <>Design engineer and builder</>,
-    subline: <>I'm Selene, a design engineer at <InlineCode>FLY</InlineCode>, where I craft intuitive<br/> user experiences. After hours, I build my own projects.</>
+    label: 'Domov',
+    title: `${person.name} - Pojišťovací poradce`,
+    description: `Webová stránka prezentující služby v oblasti pojištění a finančního poradenství od ${person.name}`,
+    headline: <>Poradce v pojištění a finančních produktech</>,
+    subline: <>Pomáhám lidem zajistit finanční klid a ochranu jejich majetku i budoucnosti.</>
 }
 
 const about = {
-    label: 'About',
-    title: 'About me',
-    description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+    label: 'O mně',
+    title: 'O mně',
+    description: `Seznamte se s {person.name}, zkušeným {person.role} v {person.location}`,
     tableOfContent: {
         display: true,
         subItems: false
@@ -68,64 +66,42 @@ const about = {
     },
     intro: {
         display: true,
-        title: 'Introduction',
-        description: <>Selene is a Jakarta-based design engineer with a passion for transforming complex challenges into simple, elegant design solutions. Her work spans digital interfaces, interactive experiences, and the convergence of design and technology.</>
+        title: 'Úvod',
+        description: <>Matěj Hrabák je poradce, který se specializuje na ochranu majetku, finanční produkty a pojištění na míru.</>
     },
     work: {
         display: true, // set to false to hide this section
-        title: 'Work Experience',
+        title: 'Služby',
         experiences: [
             {
-                company: 'FLY',
-                timeframe: '2022 - Present',
-                role: 'Senior Design Engineer',
+                company: 'Generali Česká pojišťovna',
+                timeframe: '2018 - Současnost',
+                role: 'Pojišťovací poradce',
                 achievements: [
-                    <>Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user engagement and 30% faster load times.</>,
-                    <>Spearheaded the integration of AI tools into design workflows, enabling designers to iterate 50% faster.</>
+                    <>Pomohl stovkám klientů s výběrem optimálního pojištění.</>,
+                    <>Získal zkušenosti v oblasti správy majetkového, životního i cestovního pojištění.</>
                 ],
-                images: [ // optional: leave the array empty if you don't want to display images
-                    {
-                        src: '/images/projects/project-01/cover-01.jpg',
-                        alt: 'Once UI Project',
-                        width: 16,
-                        height: 9
-                    }
-                ]
-            },
-            {
-                company: 'Creativ3',
-                timeframe: '2018 - 2022',
-                role: 'Lead Designer',
-                achievements: [
-                    <>Developed a design system that unified the brand across multiple platforms, improving design consistency by 40%.</>,
-                    <>Led a cross-functional team to launch a new product line, contributing to a 15% increase in overall company revenue.</>
-                ],
-                images: [ ]
+                images: []
             }
         ]
     },
     studies: {
         display: true, // set to false to hide this section
-        title: 'Studies',
+        title: 'Studium',
         institutions: [
             {
-                name: 'University of Jakarta',
-                description: <>Studied software engineering.</>,
-            },
-            {
-                name: 'Build the Future',
-                description: <>Studied online marketing and personal branding.</>,
+                name: 'Univerzita Ekonomie a Managementu',
+                description: <>Studium finančního managementu a pojistných produktů.</>
             }
         ]
     },
     technical: {
         display: true, // set to false to hide this section
-        title: 'Technical skills',
+        title: 'Technické dovednosti',
         skills: [
             {
                 title: 'Figma',
-                description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-                // optional: leave the array empty if you don't want to display images
+                description: <>Schopnost rychlého prototypování v nástroji Figma.</>,
                 images: [
                     {
                         src: '/images/projects/project-01/cover-02.jpg',
@@ -138,20 +114,19 @@ const about = {
                         alt: 'Project image',
                         width: 16,
                         height: 9
-                    },
+                    }
                 ]
             },
             {
                 title: 'Next.js',
-                description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-                // optional: leave the array empty if you don't want to display images
+                description: <>Tvorba moderních aplikací s použitím Next.js.</>,
                 images: [
                     {
                         src: '/images/projects/project-01/cover-04.jpg',
                         alt: 'Project image',
                         width: 16,
                         height: 9
-                    },
+                    }
                 ]
             }
         ]
@@ -160,25 +135,20 @@ const about = {
 
 const blog = {
     label: 'Blog',
-    title: 'Writing about design and tech...',
-    description: `Read what ${person.name} has been up to recently`
-    // Create new blog posts by adding a new .mdx file to app/blog/posts
-    // All posts will be listed on the /blog route
+    title: 'Články o pojištění a financích',
+    description: `Přečtěte si více o tom, jak ${person.name} pomáhá svým klientům.`
 }
 
 const work = {
-    label: 'Work',
-    title: 'My projects',
-    description: `Design and dev projects by ${person.name}`
-    // Create new project pages by adding a new .mdx file to app/blog/posts
-    // All projects will be listed on the /home and /work routes
+    label: 'Služby',
+    title: 'Nabízené služby',
+    description: `Seznamte se s portfoliem služeb ${person.name}`
 }
 
 const gallery = {
-    label: 'Gallery',
-    title: 'My photo gallery',
-    description: `A photo collection by ${person.name}`,
-    // Images from https://pexels.com
+    label: 'Galerie',
+    title: 'Galerie úspěchů',
+    description: `Fotogalerie úspěchů a příběhů klientů ${person.name}`,
     images: [
         { 
             src: '/images/gallery/img-01.jpg', 
@@ -249,7 +219,7 @@ const gallery = {
             src: '/images/gallery/img-14.jpg', 
             alt: 'image',
             orientation: 'horizontal'
-        },
+        }
     ]
 }
 
