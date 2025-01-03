@@ -38,10 +38,10 @@
             }
         },
         "studies": {
-            "title": "Studies",
+            "title": "Vzdělání",
             "institutions": {
-                "University of Jakarta": {
-                    "description": "Studied software engineering."
+                "Integrovaná středbá škola, Příbram": {
+                    "description": "Obchodník."
                 },
                 "Build the Future": {
                     "description": "Studied online marketing and personal branding."

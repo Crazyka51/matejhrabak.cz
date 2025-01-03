@@ -1,12 +1,12 @@
-const baseURL = 'demo.magic-portfolio.com'
+const baseURL = 'matejhrabak.cz'
 
 // Enable localization
-const i18n = false;
+const i18n = true;
 
 // Manage localized content in the messages folder
 const i18nOptions = {
-    locales: ['en'],            // A list of all locales that are supported, e.g. ['en','id']
-    defaultLocale: 'en'         // Locale used by default and as a fallback
+    locales: ['cs'],            // A list of all locales that are supported, e.g. ['en','id']
+    defaultLocale: 'cs'         // Locale used by default and as a fallback
 }
 
 const routes = {
@@ -24,10 +24,10 @@ const protectedRoutes = {
 }
 
 const effects = {
-    mask: 'cursor',             // none | cursor | topLeft | topRight | bottomLeft | bottomRight
+    mask: 'cursor',            // none | cursor | topLeft | topRight | bottomLeft | bottomRight
     gradient: {
         display: true,
-        opacity: 0.4            // 0 - 1
+        opacity: 0.8            // 0 - 1
     },
     dots: {
         display: true,
@@ -35,24 +35,24 @@ const effects = {
         size: '24'              // 2 | 4 | 8 | 12 | 16 | 20 | 24 | 32 | 40 | 48 | 56 | 634
     },
     lines: {
-        display: false,
+        display: true,
     },
 }
 
 const style = {
     theme:       'dark',         // dark | light
-    neutral:     'gray',         // sand | gray | slate
-    brand:       'emerald',      // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-    accent:      'indigo',       // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-    solid:       'contrast',     // color | contrast
+    neutral:     'slate',         // sand | gray | slate
+    brand:       'red',      // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+    accent:      'cyan',       // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+    solid:       'color',     // color | contrast
     solidStyle:  'flat',         // flat | plastic
     border:      'playful',      // rounded | playful | conservative
-    surface:     'translucent',  // filled | translucent
+    surface:     'filled',  // filled | translucent
     transition:  'all'           // all | micro | macro
 }
 
 const display = {
-    location: true,
+    location: false,
     time:     true
 }
 
@@ -65,7 +65,7 @@ const mailchimp = {
             opacity: 0.6            // 0 - 1
         },
         dots: {
-            display: false,
+            display: true,
         },
         lines: {
             display: false,

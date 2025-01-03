@@ -1,0 +1,81 @@
+{
+    "person": {
+        "role": "Pojišťovací poradce a expert"
+    },
+    "newsletter": {
+        "title": "Přihlaste se k odběru zpravodaje od {firstName}",
+        "description": "Občas píšu o designu, technologiích a sdílím myšlenky na křižovatce kreativity a inženýrství.",
+        "button": "Přihlásit se"
+    },
+    "home": {
+        "label": "Domů",
+        "title": "{name}'s Portfolio",
+        "description": "Portfolio prezentující mou práci jako {role}.",
+        "headline": "Poradce a celoživotní partner",
+        "subline": "Jsem Matěj Hrabák, poradce Generali České pojištovny, kde pomáhám chránit Vaše finance a majetek. Společně najdeme nejlepší řešení."
+    },
+    "about": {
+        "label": "O mně",
+        "title": "O mně",
+        "description": "Seznamte se s {name}, {role} z {location}.",
+        "intro": {
+            "title": "Úvod",
+            "description": "je zkušený poradce specializující se na transparentní a na míru šitá pojišťovací řešení. Jeho služby zahrnují osobní přístup, profesionální jednání a důraz na ochranu klientova majetku."
+        },
+        "work": {
+            "title": "Pracovní zkušenosti",
+            "experiences": {
+                "FLY": {
+                    "timeframe": "2023 - současnost",
+                    "role": "Poradce v pojištění a finančních produktů",
+                    "achievements": "Navrhl strategie, které zvýšily spokojenost klientů o 55 % díky optimalizaci cen pojistného.; Doporučil ochranu, která pokryla 80 % pojistných smluv, a pomohl klientům efektivně zhodnotit pojistné plány, čímž dosáhli významných úspor."
+                },
+                "Creativ3": {
+                    "timeframe": "2018 - 2021",
+                    "role": "Koordinator logistiky",
+                    "achievements": "Vyvinula designový systém, který sjednotil značku na více platformách a zlepšil konzistenci designu o 40 %.;Vedla multidisciplinární tým při spuštění nové produktové řady, což přispělo k 15% nárůstu příjmů společnosti."
+                }
+            }
+        },
+        "studies": {
+            "title": "Studium",
+            "institutions": {
+                "University of Jakarta": {
+                    "description": "Studovala softwarové inženýrství."
+                },
+                "Build the Future": {
+                    "description": "Studovala online marketing a osobní branding."
+                }
+            }
+        },
+        "technical": {
+            "title": "Technické dovednosti",
+            "skills": {
+                "Figma": {
+                    "description": "Prototypování v Figmě s Once UI v neuvěřitelně rychlém tempu."
+                },
+                "Nextjs": {
+                    "description": "Vytváření aplikací nové generace s Next.js + Once UI + Supabase."
+                }
+            }
+        }
+    },
+    "blog": {
+        "label": "Blog",
+        "title": "Píšu o designu a technologiích...",
+        "description": "Přečtěte si, co {name} v poslední době dělal/a."
+    },
+    "work": {
+        "label": "Projekty",
+        "title": "Moje projekty",
+        "description": "Designové a vývojové projekty od {name}."
+    },
+    "gallery": {
+        "label": "Galerie",
+        "title": "Moje fotogalerie",
+        "description": "Sbírka fotografií od {name}."
+    },
+    "projectCard": {
+        "label": "Přečíst případovou studii"
+    }
+}

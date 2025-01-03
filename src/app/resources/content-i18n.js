@@ -2,15 +2,15 @@ import { InlineCode } from "@/once-ui/components";
 
 const createI18nContent = (t) => {
     const person = {
-        firstName: 'Selene',
-        lastName:  'Yu',
+        firstName: 'Matěj',
+        lastName:  'Hrabák',
         get name() {
             return `${this.firstName} ${this.lastName}`;
         },
         role:      t("person.role"),
-        avatar:    '/images/avatar.jpg',
-        location:  'Asia/Jakarta',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-        languages: ['English', 'Bahasa']  // optional: Leave the array empty if you don't want to display languages
+        avatar:    '/images/avatar.PNG',
+        location:  'Europe/Prague',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+        languages: ['Čeština', 'English']  // optional: Leave the array empty if you don't want to display languages
     }
 
     const newsletter = {
@@ -25,22 +25,12 @@ const createI18nContent = (t) => {
         {
             name: 'GitHub',
             icon: 'github',
-            link: 'https://github.com/once-ui-system/nextjs-starter',
+            link: 'https://github.com/Crazyka51',
         },
-        {
-            name: 'LinkedIn',
-            icon: 'linkedin',
-            link: 'https://www.linkedin.com/company/once-ui/',
-        },
-        {
-            name: 'X',
-            icon: 'x',
-            link: '',
-        },
-        {
+                      {
             name: 'Email',
             icon: 'email',
-            link: 'mailto:example@gmail.com',
+            link: 'mailto:matej.hrabak@generaliceska.cz',
         },
     ]
 
@@ -65,7 +55,7 @@ const createI18nContent = (t) => {
         },
         calendar: {
             display: true,
-            link: 'https://cal.com'
+            link: 'https://outlook.office.com/bookwithme/user/fcf3570cfe3f45cfb2d15925d82327d6@cpas.cz/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink'
         },
         intro: {
             display: true,
@@ -77,7 +67,7 @@ const createI18nContent = (t) => {
             title: t("about.work.title"),
             experiences: [
                 {
-                    company: 'FLY',
+                    company: 'Generali Česká pojištovna',
                     timeframe: t("about.work.experiences.FLY.timeframe"),
                     role: t("about.work.experiences.FLY.role"),
                     achievements: t("about.work.experiences.FLY.achievements").split(";"),
@@ -91,7 +81,7 @@ const createI18nContent = (t) => {
                     ]
                 },
                 {
-                    company: 'Creativ3',
+                    company: 'Doosan Bobcat EMEA ',
                     timeframe: t("about.work.experiences.Creativ3.timeframe"),
                     role: t("about.work.experiences.Creativ3.role"),
                     achievements: t("about.work.experiences.Creativ3.achievements").split(";"),
@@ -101,7 +91,7 @@ const createI18nContent = (t) => {
         },
         studies: {
             display: true, // set to false to hide this section
-            title: 'Studies',
+            title: 'Vzdělání a certifikace',
             institutions: [
                 {
                     name: 'University of Jakarta',
@@ -114,7 +104,7 @@ const createI18nContent = (t) => {
             ]
         },
         technical: {
-            display: true, // set to false to hide this section
+            display: false, // set to false to hide this section
             title: t("about.technical.title"),
             skills: [
                 {
@@ -127,12 +117,12 @@ const createI18nContent = (t) => {
                             width: 16,
                             height: 9
                         },
-                        {
-                            src: '/images/projects/project-01/cover-03.jpg',
-                            alt: 'Project image',
-                            width: 16,
-                            height: 9
-                        },
+                       
+                       
+                       
+                       
+                       
+                       
                     ]
                 },
                 {
