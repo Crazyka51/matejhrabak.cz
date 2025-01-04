@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Přidání statického exportu
+  output: 'export', // Export projektu jako statický web
   images: {
-    unoptimized: true, // Ošetření obrázků kvůli statickému exportu
+    unoptimized: true, // Obrázky budou nezávislé na optimalizaci serveru
   },
-  basePath: '', // Ujisti se, že basePath není nastaven pro subdoménu
-  trailingSlash: true, // Důležité pro GitHub Pages
+  basePath: '', // Žádná specifická cesta
+  trailingSlash: true, // Přidá koncové lomítko pro všechny URL
 };
 
 export default nextConfig;
