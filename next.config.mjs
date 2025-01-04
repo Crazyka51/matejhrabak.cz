@@ -1,16 +1,11 @@
-import mdx from '@next/mdx';
-import createNextIntlPlugin from 'next-intl/plugin';
-
-const withMDX = mdx({
-    extension: /\.mdx?$/,
-    options: { },
-});
-
-const withNextIntl = createNextIntlPlugin();
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+  output: 'export', // Přidání statického exportu
+  images: {
+    unoptimized: true, // Ošetření obrázků kvůli statickému exportu
+  },
+  basePath: '', // Ujisti se, že basePath není nastaven pro subdoménu
+  trailingSlash: true, // Důležité pro GitHub Pages
 };
 
-export default withNextIntl(withMDX(nextConfig));
+export default nextConfig;
