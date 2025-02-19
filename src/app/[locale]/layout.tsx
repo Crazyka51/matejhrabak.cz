@@ -31,7 +31,7 @@ export async function generateMetadata(
 			title: `${person.firstName}'s Portfolio`,
 			description: 'Portfolio website showcasing my work.',
 			url: baseURL,
-			siteName: `${person.firstName}'s Portfolio`,
+			siteName: `${person.firstName}'Váš celoživotní partner`,
 			locale: 'en_US',
 			type: 'website',
 		},
@@ -92,7 +92,7 @@ export default async function RootLayout({
 	return (
 		<NextIntlClientProvider messages={messages}>
 			<Flex
-				as="html" lang="en"
+				as="html" lang="cs"
 				background="page"
 				data-neutral={style.neutral} data-brand={style.brand} data-accent={style.accent}
 				data-solid={style.solid} data-solid-style={style.solidStyle}

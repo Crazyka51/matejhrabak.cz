@@ -1,0 +1,90 @@
+<head>
+    <title>Poradce a celoživotní partner</title>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <style>
+        body {
+            background-color: #0b1120;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const App = () => {
+            return (
+                <div className="min-h-screen flex flex-col items-center justify-between">
+                    <header className="w-full flex justify-between items-center p-4">
+                        <nav className="flex space-x-4">
+                            <a href="#" className="text-white px-3 py-2 rounded-md text-sm font-medium">Domů</a>
+                            <a href="#" className="text-white px-3 py-2 rounded-md text-sm font-medium">O mně</a>
+                            <a href="#" className="text-white px-3 py-2 rounded-md text-sm font-medium">Projekty</a>
+                            <a href="#" className="text-white px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                            <a href="#" className="text-white px-3 py-2 rounded-md text-sm font-medium">Galerie</a>
+                        </nav>
+                        <div className="text-white">21:42:51</div>
+                    </header>
+                    <main className="flex flex-col items-center text-center">
+                        <div className="flex items-center space-x-8">
+                            <img src="https://placehold.co/150x300" alt="Man in a suit" className="rounded-full" />
+                            <div>
+                                <h1 className="text-5xl font-bold">Poradce a celoživotní partner</h1>
+                                <p className="mt-4 text-lg">Jsem Matěj Hrabák, poradce Generali České pojišťovny, kde pomáhám chránit Vaše finance a majetek. Společně najdeme nejlepší řešení.</p>
+                                <button className="mt-4 px-4 py-2 border border-white rounded-md">O mně</button>
+                            </div>
+                        </div>
+                        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="flex flex-col items-center p-4 border border-red-500 rounded-md">
+                                <i className="fas fa-chart-line text-red-500 text-2xl"></i>
+                                <p className="mt-2">Generali Investice</p>
+                            </div>
+                            <div className="flex flex-col items-center p-4 border border-red-500 rounded-md">
+                                <i className="fas fa-home text-red-500 text-2xl"></i>
+                                <p className="mt-2">Pojištění majetku</p>
+                            </div>
+                            <div className="flex flex-col items-center p-4 border border-red-500 rounded-md">
+                                <i className="fas fa-paw text-red-500 text-2xl"></i>
+                                <p className="mt-2">Pojištění mazlíčků</p>
+                            </div>
+                            <div className="flex flex-col items-center p-4 border border-red-500 rounded-md">
+                                <i className="fas fa-user-shield text-red-500 text-2xl"></i>
+                                <p className="mt-2">Penzijní připojištění</p>
+                            </div>
+                            <div className="flex flex-col items-center p-4 border border-red-500 rounded-md">
+                                <i className="fas fa-car-crash text-red-500 text-2xl"></i>
+                                <p className="mt-2">Povinné ručení</p>
+                            </div>
+                            <div className="flex flex-col items-center p-4 border border-red-500 rounded-md">
+                                <i className="fas fa-building text-red-500 text-2xl"></i>
+                                <p className="mt-2">Firemní pojištění</p>
+                            </div>
+                            <div className="flex flex-col items-center p-4 border border-red-500 rounded-md">
+                                <i className="fas fa-heartbeat text-red-500 text-2xl"></i>
+                                <p className="mt-2">Životní pojištění</p>
+                            </div>
+                            <div className="flex flex-col items-center p-4 border border-red-500 rounded-md">
+                                <i className="fas fa-university text-red-500 text-2xl"></i>
+                                <p className="mt-2">Bankovní služby</p>
+                            </div>
+                        </div>
+                    </main>
+                    <footer className="w-full text-center p-4">
+                        <p>© 2025 / Matěj Hrabák / Build your portfolio with Once UI</p>
+                        <div className="flex justify-center space-x-4 mt-2">
+                            <i className="fas fa-sync-alt"></i>
+                            <i className="fas fa-envelope"></i>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
