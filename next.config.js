@@ -10,7 +10,7 @@ const withMDX = mdx({
 // Konfigurace next-intl pro lokalizaci
 const withNextIntl = createNextIntlPlugin({
     locales: ['en', 'cs'], // Přidejte všechny podporované jazyky
-    defaultLocale: 'en', // Výchozí jazyk
+    defaultLocale: 'cs', // Výchozí jazyk
 });
 
 /** @type {import('next').NextConfig} */
