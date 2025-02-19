@@ -1,14 +1,13 @@
 import createMiddleware from "next-intl/middleware"
+import { routing } from "./i18n/routing"
 
 export default createMiddleware({
-  // Seznam podporovaných jazyků
-  locales: ["en", "cs"],
-  // Výchozí jazyk
-  defaultLocale: "cs",
+  locales: routing.locales,
+  defaultLocale: routing.defaultLocale,
+  localePrefix: "as-needed",
 })
 
 export const config = {
-  // Nastavení, které cesty mají být zpracovány middlewarem
   matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 }
 
