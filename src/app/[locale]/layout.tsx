@@ -9,6 +9,7 @@ import { getMessages, unstable_setRequestLocale } from "next-intl/server"
 import { Footer, Header, RouteGuard } from "@/components"
 import { effects, style } from "@/app/resources"
 import { Background, Flex } from "@/once-ui/components"
+import { locales } from "@/i18n/routing"
 
 const primary = Inter({
   variable: "--font-primary",
@@ -35,7 +36,7 @@ interface RootLayoutProps {
 }
 
 export function generateStaticParams() {
-  return [{ locale: "cs" }, { locale: "en" }]
+  return locales.map((locale) => ({ locale }))
 }
 
 export default async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
@@ -76,4 +77,3 @@ export default async function RootLayout({ children, params: { locale } }: RootL
     </html>
   )
 }
-
