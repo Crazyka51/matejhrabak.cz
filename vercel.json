@@ -11,5 +11,19 @@
       "source": "/(.*)",
       "destination": "/$1"
     }
+  ],
+  "domains": [
+    {
+      "domain": "www.matejhrabak.cz",
+      "gitBranch": "main"
+    },
+    {
+      "domain": "matejhrabakcz-crazyka51s-projects.vercel.app",
+      "gitBranch": "branch1"
+    },
+    {
+      "domain": "matejhrabakcz-crazyka51-crazyka51s-projects.vercel.app",
+      "gitBranch": "branch2"
+    }
   ]
 }
