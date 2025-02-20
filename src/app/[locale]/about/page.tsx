@@ -1,7 +1,7 @@
 "use client";
 
 import { NextPage } from "next";
-import styles from "./about.module.scss";
+import styles from "src/components/about/about.module.scss";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import TableOfContents from "../../../components/about/TableOfContents";
