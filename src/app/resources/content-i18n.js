@@ -96,10 +96,10 @@ const createI18nContent = (t) => {
       institutions: [
         {
           name: "Integrovaná Střední škola Příbram",
-                    description: <>{t(`2008 - 2012 Obor: Obchodník`)}</>,
+          description: <>{t(`2008 - 2012 Obor: Obchodník`)}</>,
         },
         {
-          name: "Zkouška o odborné certifikaci u ČNB - IDD VII ",
+          name: "Zkouška o odborné certifikaci u ČNB - IDD VII",
           description: (
             <>
               {t(
