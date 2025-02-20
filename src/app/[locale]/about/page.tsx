@@ -17,11 +17,19 @@ import {
   Text,
 } from "../../../once-ui/components";
 import { renderContent, baseURL } from "../../resources";
+import { setRequestLocale } from 'next-intl/server';
 
 interface PageProps {
   params: {
     locale: string;
   };
+}
+
+import { GetServerSidePropsContext } from 'next';
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const locale = context.req.headers['accept-language']?.split(',')[0] || 'en';
+  return { props: { locale } };
 }
 
 const generateMetadata = ({ params: { locale } }: PageProps) => {
