@@ -1,3 +1,5 @@
+"use client";
+
 import { GetServerSideProps, NextPage } from "next";
 import styles from "./page.module.css";
 import { useTranslations } from "next-intl";
