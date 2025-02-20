@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "person": {
     "role": "Pojišťovací poradce a expert"
   },
@@ -81,9 +80,5 @@
   "projectCard": {
     "label": "Přečíst případovou studii"
   }
-=======
-  "hello": "Ahoj",
-  "welcome": "Vítejte na našem webu"
->>>>>>> 0e42c8dfe75e176848d288e0a9ba00171ec69ae4
 }
 
