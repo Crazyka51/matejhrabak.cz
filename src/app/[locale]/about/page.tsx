@@ -1,9 +1,8 @@
 "use client";
 
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import styles from "./page.module.css";
 import { useTranslations } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
 import { useEffect } from "react";
 import TableOfContents from "../../../components/about/TableOfContents";
 import {
@@ -67,7 +66,6 @@ const generateMetadata = ({ params: { locale } }: PageProps) => {
 };
 
 const AboutPage: NextPage<PageProps> = ({ params: { locale } }) => {
-  unstable_setRequestLocale(locale);
   const t = useTranslations();
   const { person, about, social } = renderContent(t);
   const structure = [
@@ -413,14 +411,6 @@ const AboutPage: NextPage<PageProps> = ({ params: { locale } }) => {
       </Flex>
     </Flex>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  return {
-    props: {
-      params,
-    },
-  };
 };
 
 export default AboutPage;
