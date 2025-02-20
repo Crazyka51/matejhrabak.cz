@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import mdx from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
 
