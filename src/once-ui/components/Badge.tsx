@@ -6,7 +6,7 @@ import { Arrow, Flex, Icon, SmartLink, Text } from ".";
 import styles from "./Badge.module.scss";
 import classNames from "classnames";
 
-interface BadgeProps<T extends keyof JSX.IntrinsicElements = "div">
+interface BadgeProps<T extends ElementType = "div">
   extends React.HTMLAttributes<HTMLElement> {
   title?: string;
   icon?: string;
@@ -19,7 +19,7 @@ interface BadgeProps<T extends keyof JSX.IntrinsicElements = "div">
   as?: T; // Dynamická komponenta
 }
 
-const Badge = forwardRef<HTMLElement, BadgeProps>(
+const Badge = forwardRef<HTMLElement, BadgeProps<ElementType>>(
   (
     {
       title,
@@ -84,7 +84,7 @@ const Badge = forwardRef<HTMLElement, BadgeProps>(
 
     return (
       <Component
-        ref={ref as React.Ref<JSX.IntrinsicElements[T]>}
+        ref={ref as React.Ref<HTMLElement>}
         {...props}
         {...commonProps}
       />
