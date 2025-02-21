@@ -5,11 +5,13 @@ import { baseURL, renderContent } from "@/app/resources";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+interface PageProps {
+  params: {
+    locale: string;
+  };
+}
+
+export async function generateMetadata({ params: { locale } }: PageProps) {
   const t = await getTranslations();
   const { blog } = renderContent(t);
 
@@ -43,11 +45,7 @@ export async function generateMetadata({
 
 // Odstraněno getServerSideProps
 
-export default function Blog({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default function Blog({ params: { locale } }: PageProps) {
   const t = useTranslations();
   const { person, blog, newsletter } = renderContent(t);
   return (
