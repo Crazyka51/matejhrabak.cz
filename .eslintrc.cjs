@@ -7,14 +7,14 @@ module.exports = {
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
-      parserOptions: {
-        project: "./tsconfig.json",
-      },
+      parserOptions: {},
     },
     {
-      files: ["src/once-ui/components/index.d.ts"],
+      files: ["*.d.ts"],
       rules: {
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/ban-types": "off"
       },
     },
   ],

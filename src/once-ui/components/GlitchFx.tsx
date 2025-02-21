@@ -49,19 +49,17 @@ const GlitchFx = forwardRef<HTMLDivElement, GlitchFxProps>(
       }
     };
 
-    const triggerGlitch = () => {
-      if (trigger === "custom") {
-        setIsGlitching(true);
-        setTimeout(() => setIsGlitching(false), 500);
-      }
-    };
-
     useEffect(() => {
       if (trigger === "custom") {
+        const triggerGlitch = () => {
+          setIsGlitching(true);
+          setTimeout(() => setIsGlitching(false), 500);
+        };
+        
         const glitchInterval = setInterval(triggerGlitch, interval);
         return () => clearInterval(glitchInterval);
       }
-    }, [trigger, interval, triggerGlitch]);
+    }, [trigger, interval]);
 
     const speedClass = styles[speed];
 
