@@ -103,7 +103,7 @@ export default function Home({
       />
       {/* Hlavní obsah stránky */}
       <Flex fillWidth direction="row" paddingY="l" gap="l" alignItems="center">
-        <img
+        <Image
           src="/images/avatar_fullHD.png"
           width="200"
           height={360}

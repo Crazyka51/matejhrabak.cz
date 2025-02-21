@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { baseURL, renderContent } from "@/app/resources";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
 export const runtime = "edge";
 
@@ -56,11 +57,11 @@ export async function GET(request: Request) {
               justifyContent: "center",
             }}
           >
-            <img
+            <Image
               src={`https://${baseURL}${person.avatar}`}
+              width={120}
+              height={120}
               style={{
-                width: "12rem",
-                height: "12rem",
                 objectFit: "cover",
                 borderRadius: "100%",
               }}
