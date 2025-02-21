@@ -1,8 +1,7 @@
-"use client";
-
 import { NextPage } from "next";
 import styles from "../../../components/about/about.module.scss";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { useEffect } from "react";
 import TableOfContents from "../../../components/about/TableOfContents";
 import {
@@ -24,50 +23,39 @@ interface PageProps {
   };
 }
 
-const generateMetadata = ({ params: { locale } }: PageProps) => {
-  const t = useTranslations();
-  const { person, about, social } = renderContent(t);
-  const title = about.title;
-  const description = about.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
+export async function generateMetadata({ params }: PageProps) {
+  const t = await getTranslations("About");
+  const { about } = renderContent(t);
 
-  useEffect(() => {
-    document.title = title;
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute("content", description);
-    document
-      .querySelector('meta[property="og:title"]')
-      ?.setAttribute("content", title);
-    document
-      .querySelector('meta[property="og:description"]')
-      ?.setAttribute("content", description);
-    document
-      .querySelector('meta[property="og:url"]')
-      ?.setAttribute("content", `https://${baseURL}/${locale}/about`);
-    document
-      .querySelector('meta[property="og:image"]')
-      ?.setAttribute("content", ogImage);
-    document
-      .querySelector('meta[name="twitter:card"]')
-      ?.setAttribute("content", "summary_large_image");
-    document
-      .querySelector('meta[name="twitter:title"]')
-      ?.setAttribute("content", title);
-    document
-      .querySelector('meta[name="twitter:description"]')
-      ?.setAttribute("content", description);
-    document
-      .querySelector('meta[name="twitter:image"]')
-      ?.setAttribute("content", ogImage);
-  }, [locale, title, description, ogImage]);
-
-  return null;
-};
+  return {
+    title: about.title,
+    description: about.description,
+    openGraph: {
+      title: about.title,
+      description: about.description,
+      url: `https://${baseURL}/${params.locale}/about`,
+      images: [
+        {
+          url: `https://${baseURL}/og?title=${encodeURIComponent(about.title)}`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: about.title,
+      description: about.description,
+      images: [
+        `https://${baseURL}/og?title=${encodeURIComponent(about.title)}`,
+      ],
+    },
+  };
+}
 
 const AboutPage: NextPage<PageProps> = ({ params }) => {
   const locale = params.locale;
-  const t = useTranslations();
+  const t = useTranslations("About");
   const { person, about, social } = renderContent(t);
   const structure = [
     {
@@ -379,7 +367,8 @@ const AboutPage: NextPage<PageProps> = ({ params }) => {
                   >
                     <Text variant="heading-strong-l">{skill.title}</Text>
                     <Text variant="body-default-m" onBackground="neutral-weak">
-                      {skill.description}</Text>
+                      {skill.description}
+                    </Text>
                     {skill.images && skill.images.length > 0 && (
                       <Flex fillWidth paddingTop="m" gap="12" wrap>
                         {skill.images.map((image, index) => (
