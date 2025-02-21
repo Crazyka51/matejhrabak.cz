@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const AboutPage: NextPage<PageProps> = ({ params }) => {
-  const locale = params.locale;
+  const locale = params.locale; // Ensure locale is a string
   const t = useTranslations("About");
   const { person, about, social } = renderContent(t);
   const structure = [

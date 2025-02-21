@@ -1,5 +1,6 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
+  include: ["./.eslintrc.js"],
   extends: ["next/core-web-vitals"],
   rules: {
     "react/no-unescaped-entities": "off",
@@ -14,7 +15,7 @@ module.exports = {
       rules: {
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/ban-types": "off"
+        "@typescript-eslint/ban-types": "off",
       },
     },
   ],
