@@ -41,10 +41,7 @@ export async function generateMetadata({
   };
 }
 
-export async function getServerSideProps(context: { req: any; }) {
-  const locale = await requestLocale(context.req);
-  return { props: { locale } };
-}
+// Odstraněno getServerSideProps
 
 export default function Blog({
   params: { locale },
@@ -91,4 +88,3 @@ export default function Blog({
 function requestLocale(req: any) {
   throw new Error("Function not implemented.");
 }
-

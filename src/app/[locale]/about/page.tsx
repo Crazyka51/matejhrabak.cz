@@ -17,19 +17,11 @@ import {
   Text,
 } from "../../../once-ui/components";
 import { renderContent, baseURL } from "../../resources";
-import { setRequestLocale } from 'next-intl/server';
 
 interface PageProps {
   params: {
     locale: string;
   };
-}
-
-import { GetServerSidePropsContext } from 'next';
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const locale = context.req.headers['accept-language']?.split(',')[0] || 'en';
-  return { props: { locale } };
 }
 
 const generateMetadata = ({ params: { locale } }: PageProps) => {
@@ -73,7 +65,8 @@ const generateMetadata = ({ params: { locale } }: PageProps) => {
   return null;
 };
 
-const AboutPage: NextPage<PageProps> = ({ params: { locale } }) => {
+const AboutPage: NextPage<PageProps> = ({ params }) => {
+  const locale = params.locale;
   const t = useTranslations();
   const { person, about, social } = renderContent(t);
   const structure = [
@@ -386,8 +379,7 @@ const AboutPage: NextPage<PageProps> = ({ params: { locale } }) => {
                   >
                     <Text variant="heading-strong-l">{skill.title}</Text>
                     <Text variant="body-default-m" onBackground="neutral-weak">
-                      {skill.description}
-                    </Text>
+                      {skill.description}</Text>
                     {skill.images && skill.images.length > 0 && (
                       <Flex fillWidth paddingTop="m" gap="12" wrap>
                         {skill.images.map((image, index) => (
