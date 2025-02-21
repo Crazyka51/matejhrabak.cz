@@ -1,6 +1,5 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-  include: ["./.eslintrc.js"],
   extends: ["next/core-web-vitals"],
   rules: {
     "react/no-unescaped-entities": "off",
@@ -10,6 +9,7 @@ module.exports = {
       files: ["*.ts", "*.tsx"],
       parserOptions: {},
     },
+    
     {
       files: ["*.d.ts"],
       rules: {
