@@ -1,0 +1,237 @@
+src
+├── app
+│   ├── [locale]
+│   │   ├── about
+│   │   │   ├── about-client.tsx
+│   │   │   └── page.tsx
+│   │   ├── blog
+│   │   │   └── [slug]
+│   │   │       └── page.tsx
+│   │   └── translation-keys.ts
+│   ├── favicon.ico
+│   ├── locale
+│   │   ├── about
+│   │   │   ├── about-client.tsx
+│   │   │   └── page.tsx
+│   │   ├── blog
+│   │   │   ├── [slug]
+│   │   │   │   └── page.tsx
+│   │   │   ├── page.tsx
+│   │   │   └── posts
+│   │   │       ├── cs
+│   │   │       ├── en
+│   │   │       └── id
+│   │   ├── favicon.ico
+│   │   ├── gallery
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── not-found.tsx
+│   │   ├── page.module.css
+│   │   ├── page.tsx
+│   │   ├── translation-keys.ts
+│   │   └── work
+│   │       ├── [slug]
+│   │       │   └── page.tsx
+│   │       ├── page.tsx
+│   │       └── projects
+│   │           ├── cs
+│   │           ├── en
+│   │           └── id
+│   ├── og
+│   │   └── route.tsx
+│   ├── resources
+│   │   ├── config.js
+│   │   ├── content-i18n.ts
+│   │   ├── content.js
+│   │   ├── index.ts
+│   │   ├── renderContent.js
+│   │   └── test.ts
+│   ├── robots.ts
+│   ├── sitemap.ts
+│   ├── types
+│   │   └── about.ts
+│   └── utils
+│       ├── formatDate.ts
+│       └── utils.ts
+├── components
+│   ├── Footer.module.scss
+│   ├── Footer.tsx
+│   ├── Header.module.scss
+│   ├── Header.tsx
+│   ├── HeadingLink.module.scss
+│   ├── HeadingLink.tsx
+│   ├── Mailchimp.tsx
+│   ├── ProjectCard.module.scss
+│   ├── ProjectCard.tsx
+│   ├── RouteGuard.tsx
+│   ├── ScrollToHash.tsx
+│   ├── about
+│   │   ├── TableOfContents.tsx
+│   │   └── about.module.scss
+│   ├── blog
+│   │   ├── Post.tsx
+│   │   ├── Posts.module.scss
+│   │   └── Posts.tsx
+│   ├── gallery
+│   │   ├── Gallery.module.scss
+│   │   └── MasonryGrid.tsx
+│   ├── index.ts
+│   ├── mdx.tsx
+│   └── work
+│       ├── Projects.module.scss
+│       └── Projects.tsx
+├── eslintrc.json
+├── i18n
+│   ├── request.ts
+│   └── routing.ts
+├── middleware.ts
+├── once-ui
+│   ├── components
+│   │   ├── Accordion.module.scss
+│   │   ├── Accordion.tsx
+│   │   ├── Arrow.module.scss
+│   │   ├── Arrow.tsx
+│   │   ├── Avatar.module.scss
+│   │   ├── Avatar.tsx
+│   │   ├── AvatarGroup.module.scss
+│   │   ├── AvatarGroup.tsx
+│   │   ├── Background.module.scss
+│   │   ├── Background.tsx
+│   │   ├── Badge.module.scss
+│   │   ├── Badge.tsx
+│   │   ├── Button.module.scss
+│   │   ├── Button.tsx
+│   │   ├── Carousel.tsx
+│   │   ├── Checkbox.tsx
+│   │   ├── Chip.module.scss
+│   │   ├── Chip.tsx
+│   │   ├── ColorInput.tsx
+│   │   ├── Dialog.module.scss
+│   │   ├── Dialog.tsx
+│   │   ├── Dropdown.module.scss
+│   │   ├── Dropdown.tsx
+│   │   ├── DropdownWrapper.tsx
+│   │   ├── Feedback.tsx
+│   │   ├── Flex.tsx
+│   │   ├── GlitchFx.module.scss
+│   │   ├── GlitchFx.tsx
+│   │   ├── Grid.module.scss
+│   │   ├── Grid.tsx
+│   │   ├── Heading.tsx
+│   │   ├── Icon.tsx
+│   │   ├── IconButton.module.scss
+│   │   ├── IconButton.tsx
+│   │   ├── InlineCode.module.scss
+│   │   ├── InlineCode.tsx
+│   │   ├── Input.module.scss
+│   │   ├── Input.tsx
+│   │   ├── InteractiveDetails.tsx
+│   │   ├── Kbd.module.scss
+│   │   ├── Kbd.tsx
+│   │   ├── LetterFx.tsx
+│   │   ├── Logo.module.scss
+│   │   ├── Logo.tsx
+│   │   ├── NavIcon.module.scss
+│   │   ├── NavIcon.tsx
+│   │   ├── RadioButton.tsx
+│   │   ├── RevealFx.module.scss
+│   │   ├── RevealFx.tsx
+│   │   ├── Scroller.module.scss
+│   │   ├── Scroller.tsx
+│   │   ├── SegmentedControl.tsx
+│   │   ├── Select.module.scss
+│   │   ├── Select.tsx
+│   │   ├── SharedInteractiveStyles.module.scss
+│   │   ├── Skeleton.module.scss
+│   │   ├── Skeleton.tsx
+│   │   ├── SmartImage.tsx
+│   │   ├── SmartLink.tsx
+│   │   ├── SparkleFx.module.scss
+│   │   ├── SparkleFx.tsx
+│   │   ├── Spinner.module.scss
+│   │   ├── Spinner.tsx
+│   │   ├── StatusIndicator.module.scss
+│   │   ├── StatusIndicator.tsx
+│   │   ├── Switch.module.scss
+│   │   ├── Switch.tsx
+│   │   ├── Tag.module.scss
+│   │   ├── Tag.tsx
+│   │   ├── TagInput.tsx
+│   │   ├── Text.tsx
+│   │   ├── Textarea.tsx
+│   │   ├── Toast.module.scss
+│   │   ├── Toast.tsx
+│   │   ├── ToastProvider.tsx
+│   │   ├── Toaster.module.scss
+│   │   ├── Toaster.tsx
+│   │   ├── ToggleButton.module.scss
+│   │   ├── ToggleButton.tsx
+│   │   ├── Tooltip.tsx
+│   │   ├── User.tsx
+│   │   ├── UserMenu.module.scss
+│   │   ├── UserMenu.tsx
+│   │   ├── index.d.ts
+│   │   └── index.ts
+│   ├── icons.ts
+│   ├── interfaces.ts
+│   ├── modules
+│   │   ├── code
+│   │   │   ├── CodeBlock.module.scss
+│   │   │   ├── CodeBlock.tsx
+│   │   │   ├── CodeHighlight.css
+│   │   │   └── prismjs.d.ts
+│   │   └── index.ts
+│   ├── styles
+│   │   ├── background.scss
+│   │   ├── border.scss
+│   │   ├── breakpoints.scss
+│   │   ├── color.scss
+│   │   ├── global.scss
+│   │   ├── index.scss
+│   │   ├── layout.scss
+│   │   ├── shadow.scss
+│   │   ├── spacing.scss
+│   │   └── typography.scss
+│   ├── tokens
+│   │   ├── border.scss
+│   │   ├── function.scss
+│   │   ├── index.scss
+│   │   ├── layout.scss
+│   │   ├── scheme.scss
+│   │   ├── shadow.scss
+│   │   ├── theme.scss
+│   │   └── typography.scss
+│   └── types.ts
+├── package.json
+├── pages
+│   └── api
+│       ├── authenticate.ts
+│       └── check-auth.ts
+├── tsconfig.json
+└── types
+    ├── about.ts
+    └── custom.d.ts
+
+
+    .next/types
+├── app
+│   ├── [locale]
+│   │   ├── about
+│   │   │   └── page.ts
+│   │   ├── blog
+│   │   │   ├── [slug]
+│   │   │   │   └── page.ts
+│   │   │   └── page.ts
+│   │   ├── gallery
+│   │   │   └── page.ts
+│   │   ├── page.ts
+│   │   └── work
+│   │       ├── [slug]
+│   │       │   └── page.ts
+│   │       └── page.ts
+│   └── og
+│       └── route.ts
+├── cache-life.d.ts
+└── package.json
+
+9 directories, 10 files
