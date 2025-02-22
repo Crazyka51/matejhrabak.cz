@@ -119,6 +119,7 @@ const ImageGallery = memo(({ images }: { images: ImageType[] }) => (
     ))}
   </Flex>
 ));
+ImageGallery.displayName = "ImageGallery";
 
 const WorkExperience = memo(
   ({ experience }: { experience: WorkExperienceType }) => (
@@ -158,6 +159,7 @@ const WorkExperience = memo(
     </Flex>
   )
 );
+WorkExperience.displayName = "WorkExperience";
 
 const Studies = memo(({ institution }: { institution: InstitutionType }) => (
   <Flex fillWidth gap="4" direction="column">
@@ -169,6 +171,7 @@ const Studies = memo(({ institution }: { institution: InstitutionType }) => (
     </Text>
   </Flex>
 ));
+Studies.displayName = "Studies";
 
 const TechnicalSkill = memo(({ skill }: { skill: SkillType }) => (
   <Flex fillWidth gap="4" direction="column">
@@ -181,6 +184,7 @@ const TechnicalSkill = memo(({ skill }: { skill: SkillType }) => (
     )}
   </Flex>
 ));
+TechnicalSkill.displayName = "TechnicalSkill";
 
 const AboutClient: React.FC<AboutClientProps> = ({ content }) => {
   const { person, about, social } = content;
