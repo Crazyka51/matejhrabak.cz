@@ -24,47 +24,6 @@ interface PageProps {
   };
 }
 
-const generateMetadata = ({ params: { locale } }: PageProps) => {
-  const t = useTranslations();
-  const { person, about, social } = renderContent(t);
-  const title = about.title;
-  const description = about.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
-
-  useEffect(() => {
-    document.title = title;
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute("content", description);
-    document
-      .querySelector('meta[property="og:title"]')
-      ?.setAttribute("content", title);
-    document
-      .querySelector('meta[property="og:description"]')
-      ?.setAttribute("content", description);
-    document
-      .querySelector('meta[property="og:url"]')
-      ?.setAttribute("content", `https://${baseURL}/${locale}/about`);
-    document
-      .querySelector('meta[property="og:image"]')
-      ?.setAttribute("content", ogImage);
-    document
-      .querySelector('meta[name="twitter:card"]')
-      ?.setAttribute("content", "summary_large_image");
-    document
-      .querySelector('meta[name="twitter:title"]')
-      ?.setAttribute("content", title);
-    document
-      .querySelector('meta[name="twitter:description"]')
-      ?.setAttribute("content", description);
-    document
-      .querySelector('meta[name="twitter:image"]')
-      ?.setAttribute("content", ogImage);
-  }, [locale, title, description, ogImage]);
-
-  return null;
-};
-
 const AboutPage: NextPage<PageProps> = ({ params: { locale } }) => {
   const t = useTranslations();
   const { person, about, social } = renderContent(t);
