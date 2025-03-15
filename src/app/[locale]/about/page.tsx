@@ -21,6 +21,10 @@ import { renderContent, baseURL } from "../../resources";
 interface PageProps {
   params: {
     locale: string;
+    then?: () => void;
+    catch?: () => void;
+    finally?: () => void;
+    [Symbol.toStringTag]?: string;
   };
 }
 
