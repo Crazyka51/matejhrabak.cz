@@ -62,7 +62,7 @@ const AboutPage: NextPage<PageProps> = ({ params: { locale } }) => {
             jobTitle: person.role,
             description: about.intro.description,
             url: `https://${baseURL}/about`,
-            image: `${baseURL}/images/${person.avatar}`,
+            image: `${baseURL}/images/avatar_fullHD.png`,
             sameAs: social
               .filter((item) => item.link && !item.link.startsWith("mailto:")) // Filtruje prázdné odkazy a odkazy na email
               .map((item) => item.link),
