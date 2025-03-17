@@ -52,6 +52,19 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({
 
 export default TimeDisplay;
 
+// Definice typů pro obsah
+interface ContentSection {
+  label?: string;
+  title?: string;
+  description?: string;
+}
+
+interface PersonContent {
+  name?: string;
+  location?: string;
+  avatar?: string;
+}
+
 export const Header = () => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -66,7 +79,15 @@ export const Header = () => {
   }
 
   const t = useTranslations();
-  const { person, home, about, blog, work, gallery } = renderContent(t);
+  const content = renderContent(t);
+
+  // Bezpečné typování s výchozími hodnotami
+  const person = (content.person as PersonContent) || {};
+  const home = (content.home as ContentSection) || {};
+  const about = (content.about as ContentSection) || {};
+  const blog = (content.blog as ContentSection) || {};
+  const work = (content.work as ContentSection) || {};
+  const gallery = (content.gallery as ContentSection) || {};
 
   return (
     <>
@@ -93,7 +114,7 @@ export const Header = () => {
           alignItems="center"
           textVariant="body-default-s"
         >
-          {display.location && <Flex hide="s">{person.location}</Flex>}
+          {display.location && <Flex hide="s">{person.location || ""}</Flex>}
         </Flex>
         <Flex fillWidth justifyContent="center">
           <Flex
@@ -113,7 +134,7 @@ export const Header = () => {
                   selected={pathname === "/"}
                 >
                   <Flex paddingX="2" hide="s">
-                    {home.label}
+                    {home.label || "Home"}
                   </Flex>
                 </ToggleButton>
               )}
@@ -124,7 +145,7 @@ export const Header = () => {
                   selected={pathname === "/about"}
                 >
                   <Flex paddingX="2" hide="s">
-                    {about.label}
+                    {about.label || "About"}
                   </Flex>
                 </ToggleButton>
               )}
@@ -135,7 +156,7 @@ export const Header = () => {
                   selected={pathname.startsWith("/work")}
                 >
                   <Flex paddingX="2" hide="s">
-                    {work.label}
+                    {work.label || "Work"}
                   </Flex>
                 </ToggleButton>
               )}
@@ -146,7 +167,7 @@ export const Header = () => {
                   selected={pathname.startsWith("/blog")}
                 >
                   <Flex paddingX="2" hide="s">
-                    {blog.label}
+                    {blog.label || "Blog"}
                   </Flex>
                 </ToggleButton>
               )}
@@ -157,7 +178,7 @@ export const Header = () => {
                   selected={pathname.startsWith("/gallery")}
                 >
                   <Flex paddingX="2" hide="s">
-                    {gallery.label}
+                    {gallery.label || "Gallery"}
                   </Flex>
                 </ToggleButton>
               )}
@@ -199,7 +220,9 @@ export const Header = () => {
               </Flex>
             )}
             <Flex hide="s">
-              {display.time && <TimeDisplay timeZone={person.location} />}
+              {display.time && person.location && (
+                <TimeDisplay timeZone={person.location} />
+              )}
             </Flex>
           </Flex>
         </Flex>

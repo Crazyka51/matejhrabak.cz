@@ -4,12 +4,35 @@ import { baseURL, renderContent } from "@/app/resources";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 
+// Definice typů pro galerii
+interface GalleryContent {
+  label?: string;
+  title: string;
+  description: string;
+  images: Array<{
+    src: string;
+    alt: string;
+    orientation: string;
+  }>;
+}
+
+interface PersonContent {
+  name?: string;
+  avatar?: string;
+}
+
 export async function generateMetadata(
 	{params: {locale}}: { params: { locale: string }}
 ) {
-
 	const t = await getTranslations();
-	const { gallery } = renderContent(t);
+	const content = renderContent(t);
+	
+	// Bezpečné typování s výchozími hodnotami
+	const gallery = (content.gallery as GalleryContent) || {
+	  title: "Gallery",
+	  description: "Image gallery",
+	  images: []
+	};
 
 	const title = gallery.title;
 	const description = gallery.description;
@@ -44,7 +67,19 @@ export default function Gallery(
 ) {
 	unstable_setRequestLocale(locale);
 	const t = useTranslations();
-	const { gallery, person } = renderContent(t);
+	const content = renderContent(t);
+	
+	// Bezpečné typování s výchozími hodnotami
+	const gallery = (content.gallery as GalleryContent) || {
+	  title: "Gallery",
+	  description: "Image gallery",
+	  images: []
+	};
+	const person = (content.person as PersonContent) || {
+	  name: "",
+	  avatar: ""
+	};
+	
     return (
         <Flex fillWidth>
             <script

@@ -1,35 +1,198 @@
 import React from "react";
-import Image from "next/image";
-
-// Importování komponent z knihovny once-ui
-import {
-  Heading,
-  Flex,
-  Text,
-  Button,
-  RevealFx,
-  Arrow,
-  Grid,
-  Badge,
-} from "@/once-ui/components";
-
-// Importování vlastních komponent
-import { Projects } from "@/components/work/Projects";
-import { Mailchimp } from "@/components";
-import { Posts } from "@/components/blog/Posts";
-
-// Importování funkcí a datových zdrojů
+import { Avatar, Button, Flex, Heading, Icon, IconButton, SmartImage, Tag, Text } from "@/once-ui/components";
 import { baseURL, renderContent } from "@/app/resources";
+import TableOfContents from "@/components/about/TableOfContents";
+import styles from "@/components/about/about.module.scss";
 
-// Funkce pro generování metadat pro stránku
-export async function generateMetadata({
-  params: { locale },
+interface ContentData {
+  person?: {
+    name?: string;
+    avatar?: string;
+    role?: string;
+    location?: string;
+    languages?: string[];
+  };
+  about?: {
+    title?: string;
+    description?: string;
+    tableOfContent?: {
+      display?: boolean;
+      subItems?: boolean;
+    };
+    avatar?: {
+      display?: boolean;
+    };
+    calendar?: {
+      display?: boolean;
+      link?: string;
+    };
+    intro?: {
+      display?: boolean;
+      title?: string;
+      description?: React.ReactNode;
+    };
+    work?: {
+      display?: boolean;
+      title?: string;
+      experiences?: Array<{
+        company?: string;
+        role?: string;
+        timeframe?: string;
+        achievements?: string[];
+        images?: Array<{
+          width?: number;
+          height?: number;
+          alt?: string;
+          src?: string;
+        }>;
+      }>;
+    };
+    studies?: {
+      display?: boolean;
+      title?: string;
+      institutions?: Array<{
+        name?: string;
+        description?: string;
+      }>;
+    };
+    technical?: {
+      display?: boolean;
+      title?: string;
+      skills?: Array<{
+        title?: string;
+        description?: string;
+        images?: Array<{
+          width?: number;
+          height?: number;
+          alt?: string;
+          src?: string;
+        }>;
+      }>;
+    };
+  };
+  social?: Array<{
+    name?: string;
+    icon?: string;
+    link?: string;
+  }>;
+}
+
+const WorkExperience = ({
+  experience,
 }: {
-  params: { locale: string };
-}) {
-  const { home } = renderContent();
-  const title = home.title;
-  const description = home.description;
+  experience: {
+    company?: string;
+    role?: string;
+    timeframe?: string;
+    achievements?: string[];
+    images?: Array<{ width?: number; height?: number; alt?: string; src?: string }>;
+  };
+}) => (
+  <Flex fillWidth direction="column">
+    <Flex fillWidth justifyContent="space-between" alignItems="flex-end" marginBottom="4">
+      <Text id={experience.company || ""} variant="heading-strong-l">
+        {experience.company || ""}
+      </Text>
+      <Text variant="heading-default-xs" onBackground="neutral-weak">
+        {experience.timeframe || ""}
+      </Text>
+    </Flex>
+    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
+      {experience.role || ""}
+    </Text>
+    <Flex as="ul" direction="column" gap="16">
+      {(experience.achievements || []).map((achievement, index) => (
+        <Text as="li" variant="body-default-m" key={`${experience.company || ""}-${index}`}>
+          {achievement}
+        </Text>
+      ))}
+    </Flex>
+    {experience.images && experience.images.length > 0 && (
+      <Flex fillWidth paddingTop="m" paddingLeft="40" wrap>
+        {experience.images.map((image, imageIndex) => (
+          <Flex
+            key={imageIndex}
+            border="neutral-medium"
+            borderStyle="solid-1"
+            radius="m"
+            minWidth={image.width || 0}
+            height={image.height || 0}
+          >
+            <SmartImage
+              enlarge
+              radius="m"
+              sizes={(image.width || 0).toString()}
+              alt={image.alt || ""}
+              src={image.src || ""}
+            />
+          </Flex>
+        ))}
+      </Flex>
+    )}
+  </Flex>
+);
+
+const Studies = ({
+  institution,
+}: {
+  institution: {
+    name?: string;
+    description?: string;
+  };
+}) => (
+  <Flex fillWidth gap="4" direction="column">
+    <Text id={institution.name || ""} variant="heading-strong-l">
+      {institution.name || ""}
+    </Text>
+    <Text variant="heading-default-xs" onBackground="neutral-weak">
+      {institution.description || ""}
+    </Text>
+  </Flex>
+);
+
+const TechnicalSkill = ({
+  skill,
+}: {
+  skill: {
+    title?: string;
+    description?: string;
+    images?: Array<{ width?: number; height?: number; alt?: string; src?: string }>;
+  };
+}) => (
+  <Flex fillWidth gap="4" direction="column">
+    <Text variant="heading-strong-l">{skill.title || ""}</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">
+      {skill.description || ""}
+    </Text>
+    {skill.images && skill.images.length > 0 && (
+      <Flex fillWidth paddingTop="m" gap="12" wrap>
+        {skill.images.map((image, imageIndex) => (
+          <Flex
+            key={imageIndex}
+            border="neutral-medium"
+            borderStyle="solid-1"
+            radius="m"
+            minWidth={image.width || 0}
+            height={image.height || 0}
+          >
+            <SmartImage
+              enlarge
+              radius="m"
+              sizes={(image.width || 0).toString()}
+              alt={image.alt || ""}
+              src={image.src || ""}
+            />
+          </Flex>
+        ))}
+      </Flex>
+    )}
+  </Flex>
+);
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const content = renderContent() as unknown as ContentData;
+  const title = content.about?.title || "About";
+  const description = content.about?.description || "";
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   return {
@@ -39,7 +202,7 @@ export async function generateMetadata({
       title,
       description,
       type: "website",
-      url: `https://${baseURL}/${locale}`,
+      url: `https://${baseURL}/${locale}/blog`,
       images: [
         {
           url: ogImage,
@@ -56,350 +219,161 @@ export async function generateMetadata({
   };
 }
 
-// Hlavní komponenta pro domovskou stránku
-export default function Home({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
-  const { home, about, person, newsletter } = renderContent();
+export default function About({ params: { locale } }: { params: { locale: string } }) {
+  const content = renderContent() as unknown as ContentData;
+  const person = content.person || {};
+  const about = content.about || {};
+  const social = content.social || [];
+
+  const structure = [
+    {
+      title: about.intro?.title || "",
+      display: !!about.intro?.display,
+      items: [],
+    },
+    {
+      title: about.work?.title || "",
+      display: !!about.work?.display,
+      items: (about.work?.experiences || []).map((experience) => experience.company || ""),
+    },
+    {
+      title: about.studies?.title || "",
+      display: !!about.studies?.display,
+      items: (about.studies?.institutions || []).map((institution) => institution.name || ""),
+    },
+    {
+      title: about.technical?.title || "",
+      display: !!about.technical?.display,
+      items: (about.technical?.skills || []).map((skill) => skill.title || ""),
+    },
+  ];
 
   return (
-    <Flex
-      maxWidth="m"
-      fillWidth
-      gap="xl"
-      direction="column"
-      alignItems="center"
-    >
-      {/* Strukturovaná data pro SEO */}
+    <Flex fillWidth maxWidth="m" direction="column">
       <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: home.title,
-            description: home.description,
-            url: `https://${baseURL}`,
-            image: `${baseURL}/og?title=${encodeURIComponent(home.title)}`,
-            publisher: {
-              "@type": "Person",
-              name: person.name,
-              image: {
-                "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
-              },
+            "@type": "Person",
+            name: person.name || "",
+            jobTitle: person.role || "",
+            description: about.intro?.description || "",
+            url: `https://${baseURL}/about`,
+            image: `${baseURL}/images/${person.avatar || ""}`,
+            sameAs: (social || [])
+              .filter((item) => item.link && !item.link.startsWith("mailto:"))
+              .map((item) => item.link || ""),
+            worksFor: {
+              "@type": "Organization",
+              name: about.work?.experiences?.[0]?.company || "",
             },
           }),
         }}
       />
-      {/* Hlavní obsah stránky */}
-      <Flex fillWidth direction="row" paddingY="l" gap="l" alignItems="center">
-        <Image
-          src="/images/avatar_fullHD.png"
-          width="200"
-          height={360}
-          style={{
-            objectFit: "cover",
-            borderRadius: "50%",
-            marginRight: "24px",
-          }}
-          alt="Portrét Matěje Hrabáka"
-        />
-        <Flex direction="column">
-          <RevealFx
-            translateY="4"
-            fillWidth
-            justifyContent="flex-start"
-            paddingBottom="m"
-          >
-            <Heading wrap="balance" variant="display-strong-l">
-              {home.headline}
-            </Heading>
-          </RevealFx>
-          <RevealFx
-            translateY="8"
-            delay={0.2}
-            fillWidth
-            justifyContent="flex-start"
-            paddingBottom="m"
-          >
-            <Text
-              wrap="balance"
-              onBackground="neutral-weak"
-              variant="heading-default-xl"
-            >
-              {home.subline}
-            </Text>
-          </RevealFx>
-          <RevealFx translateY="12" delay={0.4}>
-            <Flex fillWidth>
-              <Button
-                id="about"
-                href={`/${locale}/about`}
-                variant="tertiary"
-                size="m"
-                data-shape="playful"
-              >
-                <Flex gap="8" alignItems="center">
-                  About
-                  <Arrow trigger="#about" />
-                </Flex>
-              </Button>
+      {about.tableOfContent?.display && (
+        <Flex
+          style={{ left: "0", top: "50%", transform: "translateY(-50%)" }}
+          position="fixed"
+          paddingLeft="24"
+          gap="32"
+          direction="column"
+          hide="s"
+        >
+          <TableOfContents
+            structure={structure}
+            about={{
+              tableOfContent: {
+                display: !!about.tableOfContent?.display,
+                subItems: !!about.tableOfContent?.subItems,
+              },
+            }}
+          />
+        </Flex>
+      )}
+      <Flex fillWidth mobileDirection="column" justifyContent="center">
+        {about.avatar?.display && (
+          <Flex minWidth="160" paddingX="l" paddingBottom="xl" gap="m" flex={3} direction="column" alignItems="center">
+            <Avatar src={person.avatar || ""} size="xl" />
+            <Flex gap="8" alignItems="center">
+              <Icon onBackground="accent-weak" name="globe" />
+              {person.location || ""}
             </Flex>
-          </RevealFx>
+            {person.languages && person.languages.length > 0 && (
+              <Flex wrap gap="8">
+                {person.languages.map((language, index) => (
+                  <Tag key={index} size="l">
+                    {language}
+                  </Tag>
+                ))}
+              </Flex>
+            )}
+          </Flex>
+        )}
+        <Flex className={styles.blockAlign} fillWidth flex={9} maxWidth={40} direction="column">
+          <Flex
+            id={about.intro?.title || ""}
+            fillWidth
+            minHeight="160"
+            direction="column"
+            justifyContent="center"
+            marginBottom="32"
+          >
+            {about.calendar?.display && (
+              <Flex
+                className={styles.blockAlign}
+                style={{
+                  backdropFilter: "blur(var(--static-space-1))",
+                  border: "1px solid var(--brand-alpha-medium)",
+                  width: "fit-content",
+                }}
+                alpha="brand-weak"
+                radius="full"
+                fillWidth
+                padding="4"
+                gap="8"
+                marginBottom="m"
+                alignItems="center"
+              >
+                <Flex paddingLeft="12">
+                  <Icon name="calendar" onBackground="brand-weak" />
+                </Flex>
+                <Flex paddingX="8">Schedule a call</Flex>
+                <IconButton
+                  href={about.calendar?.link || "#"}
+                  data-border="rounded"
+                  variant="tertiary"
+                  icon="chevronRight"
+                />
+              </Flex>
+            )}
+            <Heading className={styles.textAlign} variant="display-strong-xl">
+              {person.name || ""}
+            </Heading>
+            <Text className={styles.textAlign} variant="display-default-xs" onBackground="neutral-weak">
+              {person.role || ""}
+            </Text>
+            {social && social.length > 0 && (
+              <Flex className={styles.blockAlign} paddingTop="20" paddingBottom="8" gap="8" wrap>
+                {social.map(
+                  (item) =>
+                    item.link && (
+                      <Button
+                        key={item.name}
+                        href={item.link}
+                        prefixIcon={item.icon}
+                        label={item.name || ""}
+                        size="s"
+                        variant="tertiary"
+                      />
+                    ),
+                )}
+              </Flex>
+            )}
+          </Flex>
         </Flex>
       </Flex>
-      {/* Sekce s odznaky */}
-      <RevealFx translateY="16" delay={0.6}>
-        <Grid columns="repeat(4, 1fr)" gap="24" padding="24">
-          {/* Odznak pro investice */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href={`/${locale}/investments`}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/investice_ikona.png"
-              alt="Investice"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Generali Investice
-            </span>
-          </Badge>
-          {/* Odznak pro pojištění majetku */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href="https://www.generaliceska.cz/pojisteni-majetku#/?externalSellerID=int-matej-hrabak"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/majetek_ikona.png"
-              alt="Pojištění majetku"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Pojištění majetku
-            </span>
-          </Badge>
-          {/* Odznak pro pojištění mazlíčků */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href="https://sjednat.generaliceska.cz/mazlicek?externalSellerId=int-matej-hrabak"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/mazlicek_ikona.png"
-              alt="Pojištění mazlíčků"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Pojištění mazlíčků
-            </span>
-          </Badge>
-          {/* Odznak pro penzijní připojištění */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href={`/${locale}/pension-insurance`}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/penzijni_ikona.png"
-              alt="Penzijní připojištění"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Penzijní připojištění
-            </span>
-          </Badge>
-          {/* Odznak pro povinné ručení */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href="https://www.generaliceska.cz/povinne-ruceni-online-sjednani?externalSellerId=int-matej-hrabak"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/pmv_ikona.png"
-              alt="Povinné ručení"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Povinné ručení
-            </span>
-          </Badge>
-          {/* Odznak pro firemní pojištění */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href={`/${locale}/business-insurance`}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/sme_ikona.png"
-              alt="Firemní pojištění"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Firemní pojištění
-            </span>
-          </Badge>
-          {/* Odznak pro životní pojištění */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href={`/${locale}/life-insurance`}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/zivot_ikona.png"
-              alt="Životní pojištění"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Životní pojištění
-            </span>
-          </Badge>
-          {/* Odznak pro bankovní služby */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href={`/${locale}/banking-services`}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/bankovni_sluzby_ikona.png"
-              alt="Bankovní služby"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Bankovní služby
-            </span>
-          </Badge>
-          {/* Odznak pro cestovní pojištění */}
-          <Badge
-            arrow
-            effect
-            data-brand="tertiary"
-            data-border="rounded"
-            as="a"
-            href="https://www.generaliceska.cz/cestovni-pojisteni-online-sjednani#/?externalSellerID=int-matej-hrabak"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <Image
-              src="/images/cestovko_ikona.png"
-              alt="Cestovní pojištění"
-              width={50}
-              height={50}
-            />
-            <span style={{ display: "inline-block", marginTop: "8px" }}>
-              Cestovní pojištění
-            </span>
-          </Badge>
-        </Grid>
-      </RevealFx>
     </Flex>
   );
 }

@@ -5,6 +5,13 @@ import Image from "next/image";
 
 export const runtime = "edge";
 
+// Definice typů pro person
+interface PersonContent {
+  name?: string;
+  avatar?: string;
+  role?: string;
+}
+
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const title = url.searchParams.get("title") || "Portfolio";
@@ -13,7 +20,14 @@ export async function GET(request: Request) {
   ).then((res) => res.arrayBuffer());
 
   const t = await getTranslations();
-  const { person } = renderContent(t);
+  const content = renderContent(t);
+
+  // Bezpečné typování s výchozími hodnotami
+  const person = (content.person as PersonContent) || {
+    name: "",
+    avatar: "",
+    role: ""
+  };
 
   return new ImageResponse(
     (
@@ -58,7 +72,7 @@ export async function GET(request: Request) {
             }}
           >
             <Image
-              src={`https://${baseURL}${person.avatar}`}
+              src={`https://${baseURL}${person.avatar || ""}`}
               width={120}
               height={120}
               style={{
@@ -83,7 +97,7 @@ export async function GET(request: Request) {
                   textWrap: "balance",
                 }}
               >
-                {person.name}
+                {person.name || ""}
               </span>
               <span
                 style={{
@@ -94,7 +108,7 @@ export async function GET(request: Request) {
                   opacity: "0.6",
                 }}
               >
-                {person.role}
+                {person.role || ""}
               </span>
             </div>
           </div>

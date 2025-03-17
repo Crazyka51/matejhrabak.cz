@@ -3,11 +3,27 @@ import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components"
 import { useTranslations } from "next-intl";
 import styles from './Footer.module.scss'
 
+// Definice typů pro lepší typovou kontrolu
+interface PersonContent {
+  name?: string;
+  avatar?: string;
+}
+
+interface SocialItem {
+  name: string;
+  icon: string;
+  link?: string;
+}
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const t = useTranslations();
-  const { person, social } = renderContent(t);
+  const content = renderContent(t);
+  
+  // Bezpečné typování s výchozími hodnotami
+  const person = (content.person as PersonContent) || {};
+  const social = (content.social as SocialItem[]) || [];
 
   return (
     <Flex
@@ -27,7 +43,7 @@ export const Footer = () => {
             © {currentYear} /
           </Text>
           <Text paddingX="4">
-            {person.name}
+            {person.name || ""}
           </Text>
           <Text onBackground="neutral-weak">
             {/* Usage of this template requires attribution. Please don't remove the link to Once UI. */}
@@ -36,13 +52,13 @@ export const Footer = () => {
         </Text>
         <Flex
           gap="16">
-          {social.map((item) => (
+          {social.map((item, index) => (
             item.link && (
               <IconButton
-                key={item.name}
+                key={item.name || `social-${index}`}
                 href={item.link}
-                icon={item.icon}
-                tooltip={item.name}
+                icon={item.icon || "link"}
+                tooltip={item.name || "Social link"}
                 size="s"
                 variant="ghost" />
             )

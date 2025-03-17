@@ -7,11 +7,31 @@ import { Inter } from "next/font/google"
 import { Source_Code_Pro } from "next/font/google"
 import { renderContent } from "@/app/resources"
 
+// Definice typů pro about sekci
+interface AboutContent {
+  title: string;
+  description: string;
+  // další vlastnosti...
+}
+
+interface PersonContent {
+  name?: string;
+  avatar?: string;
+}
+
 export async function generateMetadata() {
-  const { person, about } = renderContent()
-  const title = about.title
-  const description = about.description
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`
+  const content = renderContent();
+
+  // Bezpečné typování s výchozími hodnotami
+  const person = (content.person as PersonContent) || { name: "", avatar: "" };
+  const about = (content.about as AboutContent) || {
+    title: "About",
+    description: "About page"
+  };
+
+  const title = about.title;
+  const description = about.description;
+  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -82,4 +102,3 @@ function RootLayoutContent({ children }: RootLayoutContentProps) {
     </html>
   )
 }
-
