@@ -8,8 +8,8 @@ interface ProjectsProps {
     locale: string;
 }
 
-export function Projects({ range, locale }: ProjectsProps) {
-    let allProjects = getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]);
+export async function Projects({ range, locale }: ProjectsProps) {
+  let allProjects = await getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]);
 
     const sortedProjects = allProjects.sort((a: { metadata: { publishedAt: string | number | Date; }; }, b: { metadata: { publishedAt: string | number | Date; }; }) => {
         return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();

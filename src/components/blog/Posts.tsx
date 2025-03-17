@@ -9,13 +9,13 @@ interface PostsProps {
     thumbnail?: boolean;
 }
 
-export function Posts({
+export async function Posts({
     range,
     columns = '1',
     locale = 'en',
     thumbnail = false
 }: PostsProps) {
-    let allBlogs = getPosts(['src', 'app', '[locale]', 'blog', 'posts', locale]);
+    let allBlogs = await getPosts(['src', 'app', '[locale]', 'blog', 'posts', locale]);
 
     const sortedBlogs = allBlogs.sort((a, b) => {
         return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();

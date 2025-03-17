@@ -61,7 +61,7 @@ export default function Work(
   { params: { locale } }: { params: { locale: string } }
 ) {
   unstable_setRequestLocale(locale);
-  let allProjects = getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]);
+  let allProjects = await getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]);
 
   const t = useTranslations();
   const content = renderContent(t);

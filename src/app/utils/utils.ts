@@ -1,4 +1,5 @@
-'use server';
+'use server'; // Ujistěte se, že tato direktiva je na začátku souboru
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -20,7 +21,7 @@ type Metadata = {
   team: Team[];
 };
 
-function getMDXFiles(dir: string) {
+async function getMDXFiles(dir: string) {
   if (!fs.existsSync(dir)) {
     throw new Error(`Directory not found: ${dir}`);
   }
@@ -28,7 +29,7 @@ function getMDXFiles(dir: string) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
 }
 
-function readMDXFile(filePath: string) {
+async function readMDXFile(filePath: string) {
   if (!fs.existsSync(filePath)) {
     throw new Error(`File not found: ${filePath}`);
   }
@@ -49,10 +50,10 @@ function readMDXFile(filePath: string) {
   return { metadata, content };
 }
 
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
+async function getMDXData(dir: string) {
+  const mdxFiles = await getMDXFiles(dir);
+  const postsPromises = mdxFiles.map(async (file) => {
+    const { metadata, content } = await readMDXFile(path.join(dir, file));
     const slug = path.basename(file, path.extname(file));
 
     return {
@@ -61,9 +62,11 @@ function getMDXData(dir: string) {
       content,
     };
   });
+
+  return Promise.all(postsPromises);
 }
 
-export function getPosts(customPath = ['', '', '', '']) {
+export async function getPosts(customPath = ['', '', '', '']) {
   const postsDir = path.join(process.cwd(), ...customPath);
   return getMDXData(postsDir);
 }
