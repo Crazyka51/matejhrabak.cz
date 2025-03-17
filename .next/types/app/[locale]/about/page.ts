@@ -20,13 +20,13 @@ checkFields<Diff<{
   preferredRegion?: 'auto' | 'global' | 'home' | string | string[]
   runtime?: 'nodejs' | 'experimental-edge' | 'edge'
   maxDuration?: number
-  
+
   metadata?: any
   generateMetadata?: Function
   viewport?: any
   generateViewport?: Function
   experimental_ppr?: boolean
-  
+
 }, TEntry, ''>>()
 
 
@@ -52,8 +52,8 @@ if ('generateStaticParams' in entry) {
 }
 
 export interface PageProps {
-  params?: Promise<SegmentParams>
-  searchParams?: Promise<any>
+  params?: { locale: string };
+  searchParams?: any;
 }
 export interface LayoutProps {
   children?: React.ReactNode
@@ -75,7 +75,7 @@ type MaybeField<T, K extends string> = T extends { [k in K]: infer G } ? G exten
 
 
 
-function checkFields<_ extends { [k in keyof any]: never }>() {}
+function checkFields<_ extends { [k in keyof any]: never }>() { }
 
 // https://github.com/sindresorhus/type-fest
 type Numeric = number | bigint
