@@ -1,0 +1,9 @@
+{
+  "cody.codebase": "https://github.com/Crazyka51/matejhrabak.cz",
+  "cody.autocomplete.languages": {
+    "*": true
+  },
+  "cody.chat.defaultLocation": "sidebar",
+  "cody.chat.preInstruction": "Answer all my questins in Czech",
+  "cody.commandCodeLenses": true
+}

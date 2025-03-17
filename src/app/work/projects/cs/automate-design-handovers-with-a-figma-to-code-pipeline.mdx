@@ -1,0 +1,43 @@
+---
+title: "Automatizace předávání designu pomocí Figma-to-Code Pipeline"
+publishedAt: "2024-04-01"
+summary: "Prozkoumejte, proč je důležitá volba mezi mezerami a tabulátory pro odsazení kódu, a jak tento výběr ovlivňuje vývoj."
+images:
+  - "/images/projects/project-01/cover-02.jpg"
+  - "/images/projects/project-01/image-03.jpg"
+team:
+  - name: "John Doe"
+    role: "Softwarový inženýr"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/company/once-ui/"
+---
+
+## Přehled
+
+V tomto projektu jsem se zaměřil na automatizaci často zdlouhavého procesu předávání designu. Cílem bylo vytvořit pipeline, která převádí návrhy z Figmy přímo na čistý, připravený kód pro produkci. Díky integraci designových tokenů, knihoven komponent a automatizovaných workflow tato řešení významně zkrátila čas strávený převodem návrhů na kód a zároveň udržela konzistenci návrhů v rámci produktu.
+
+## Klíčové vlastnosti
+
+- **Integrace Figma pluginu**: Vyvinut vlastní plugin pro Figmu, který extrahuje designové tokeny, jako jsou barvy, typografie a hodnoty pro odsazení, a exportuje je v kompatibilním formátu pro náš kód.
+- **Generování kódu**: Automatizovaný proces, který převádí komponenty z Figmy na React kód pomocí kombinace designových tokenů a předpřipravených šablon komponent. To umožnilo vývojářům soustředit se více na logiku a méně na opakující se kódování UI.
+- **Kontinuální synchronizace**: Nastavena CI/CD pipeline, která neustále synchronizuje změny designu z Figmy do kódu, což zajišťuje, že aktualizace designu jsou okamžitě reflektovány bez manuálních zásahů.
+- **Škálovatelný designový systém**: Využit designový systém jako jednotný zdroj pravdy pro návrháře i vývojáře, což usnadňuje udržování konzistence i při vývoji produktu.
+
+## Použité technologie
+
+- **Figma API**: Pro extrakci designových tokenů a dat komponent přímo z návrhů ve Figmě.
+- **React a Next.js**: Pro tvorbu front-endové kódové základny s čistými, znovupoužitelnými komponentami.
+- **Styled-Components**: Pro dynamické řízení stylů pomocí designových tokenů.
+- **GitHub Actions**: Pro automatizaci pipeline a synchronizaci změn návrhu do repozitáře.
+
+## Výzvy a poznatky
+
+Jednou z největších výzev bylo zajistit, aby generovaný kód byl čistý a snadno udržovatelný. To zahrnovalo nastavení inteligentního mapování mezi komponentami Figmy a strukturami React kódu a řešení okrajových případů, jako je responzivní design a podmíněné vykreslování. Další výzvou byla robustní správa chyb při kontinuální synchronizaci, aby se zabránilo konfliktům během vývoje.
+
+## Výsledek
+
+Automatizovaný pipeline Figma-to-Code zjednodušil proces předávání návrhů, čímž se čas potřebný na převod návrhů do vývoje snížil o 40 %. Návrháři nyní mají větší jistotu, že jejich návrhy budou přesně převedeny do kódu, a vývojáři se mohou více soustředit na složitější logiku a vývoj funkcí. Tento projekt prokázal hodnotu automatizace při překonávání mezery mezi návrhem a vývojem.
+
+---
+
+Tento projekt demonstruje vaši schopnost využívat automatizaci a zefektivňovat workflow, což je vysoce relevantní pro portfolia zaměřená na designové inženýrství, kde je důraz kladen na efektivitu a inovace.
